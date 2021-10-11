@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Define a service using a base URL and expected endpoints
-export const pokemonApi = createApi({
-   reducerPath: 'pokemonApi',
+export const exchangeApi = createApi({
+   reducerPath: 'exchangeApi',
    baseQuery: fetchBaseQuery({
-      baseUrl: 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/',
+      baseUrl: 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/',
    }),
    endpoints: (builder) => ({
-      getPokemonByName: builder.query({
+      getExchangeRatesByCurrency: builder.query({
          query: (name) => `/${name}`,
       }),
    }),
@@ -15,4 +15,4 @@ export const pokemonApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery } = pokemonApi;
+export const { useGetExchangeRatesByCurrencyQuery } = exchangeApi;

@@ -1,25 +1,25 @@
 import React from 'react';
-import { useGetPokemonByNameQuery } from '../services/currencyAPIs';
+import DropdownList from '../components/Shared/DropdownList';
+import ExchangeRateTable from '../components/Rates/ExchangeRateTable';
 
-import { DropdownList } from '../components';
+import { Paper, Box } from '@mui/material';
 
 export default function Rates() {
-   const { data, error, isLoading } =
-      useGetPokemonByNameQuery('currencies.json');
+   const [currencies, setCurrencies] = React.useState([]);
+   //    const [exchangeRate, setExchangeRate] = React.useState([]);
 
-   console.log(typeof data);
+   const [fromCurrency, setFromCurrency] = React.useState('AUD');
+   const [amount, setAmount] = React.useState();
    return (
-      <div className='App'>
-         {error ? (
-            <>Oh no, there was an error</>
-         ) : isLoading ? (
-            <>Loading...</>
-         ) : data ? (
-            <>
-               <DropdownList countries={data} listType='From' />
-               <DropdownList countries={data} listType='To' />
-            </>
-         ) : null}
-      </div>
+      <Box sx={{ display: 'flex', overflowX: 'scroll' }}>
+         <Paper elevation={12}>
+            <DropdownList
+               name='Base currency'
+               value={fromCurrency}
+               onChange={(e) => setFromCurrency(e.target.value)}
+            />
+            <ExchangeRateTable fromCurrency={fromCurrency} />
+         </Paper>
+      </Box>
    );
 }
