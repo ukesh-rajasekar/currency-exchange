@@ -16,21 +16,32 @@ const getDate = () => {
    return d.toLocaleString();
 };
 
-export const TimeSeries = ({
+export const Polling = ({
    name,
    pollingInterval,
-   toCurrency,
+
    fromCurrency,
 }) => {
    const { data, error, isLoading, isFetching } =
       useGetExchangeRatesByCurrencyQuery(name, {
          pollingInterval,
       });
-   // console.log('here', fromCurrency, data[fromCurrency][toCurrency]);
    const dispatch = useDispatch();
 
+   // Object.keys(currencySymbols).map((currency) => {
+   //    const { data, error, isLoading, isFetching } =
+   //       useGetExchangeRatesByCurrencyQuery(
+   //          `latest/currencies/${currency.toLowerCase()}.json`,
+   //          {
+   //             pollingInterval,
+   //          }
+   //       );
+
+   //    console.log(data);
+   // });
+
    const storeExchangeRates = async () => {
-      const mappings = Object.keys(data[fromCurrency]).map((currency) => {
+      Object.keys(data[fromCurrency]).map((currency) => {
          // console.log(currency, data[fromCurrency][currency]);
 
          if (currencySymbols[currency.toUpperCase()] != undefined) {

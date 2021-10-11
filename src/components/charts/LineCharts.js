@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Box } from '@mui/system';
 
 export default function LineCharts(props) {
-   const { toCurrency } = props;
+   const { toCurrency, fromCurrency } = props;
    // let exchangeRateOverTime = useSelector(
    //    (state) => state.exchanges.ExchangeRatesOverTime
    // );
@@ -15,13 +15,13 @@ export default function LineCharts(props) {
    let exchangeRateOverTime2 = useSelector(
       (state) => state.exchanges.AUDExchangeRates
    );
-
+   console.log(exchangeRateOverTime2[fromCurrency][toCurrency]);
    const plotData = {
       labels: timeSeries,
       datasets: [
          {
             label: 'Change in exchange rate',
-            data: exchangeRateOverTime2[toCurrency],
+            data: exchangeRateOverTime2[fromCurrency][toCurrency],
             fill: false,
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgba(255, 99, 132, 0.2)',

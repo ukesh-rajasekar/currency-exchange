@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DropdownList from '../components/Shared/DropdownList';
-import { TimeSeries } from '../components/charts/polling';
+import { Polling } from '../components/charts/Polling';
 import {
    dropExchangeRatesOverTime,
    dropTimeSeries,
@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import LineCharts from '../components/charts/LineCharts';
 
 import { Paper, Box, Grid, Button } from '@mui/material';
+import ChunckCalls from '../components/charts/ChunckCalls';
 
 const getDate = () => {
    var d = new Date();
@@ -21,15 +22,6 @@ export default function Charts() {
    const [toCurrency, setToCurrency] = React.useState('AUD');
 
    const [pollingInterval, setPollingInterval] = React.useState(5000);
-   // const dispatch = useDispatch();
-
-   // const GenerateChart = () => {
-   //    // dispatch(dropExchangeRatesOverTime());
-   //    // dispatch(dropTimeSeries());
-
-   //    setPollingInterval(Number(3000));
-   // };
-   // dispatch(addTimeSeries(getDate()));
 
    console.log(toCurrency);
 
@@ -75,13 +67,21 @@ export default function Charts() {
                </Grid>
             </Grid>
 
-            <TimeSeries
+            {/* <Polling
                name={`latest/currencies/${fromCurrency.toLowerCase()}.json`}
                pollingInterval={pollingInterval}
                toCurrency={toCurrency.toLowerCase()}
                fromCurrency={fromCurrency.toLowerCase()}
+            /> */}
+            <LineCharts
+               toCurrency={toCurrency.toLocaleLowerCase()}
+               fromCurrency={fromCurrency.toLowerCase()}
             />
-            <LineCharts toCurrency={toCurrency.toLocaleLowerCase()} />
+            <ChunckCalls
+               pollingInterval={pollingInterval}
+               toCurrency={toCurrency.toLowerCase()}
+               fromCurrency={fromCurrency.toLowerCase()}
+            />
          </Paper>
       </Box>
    );
