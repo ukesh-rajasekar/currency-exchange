@@ -7,6 +7,7 @@ const exchangesSlice = createSlice({
       tableRowData: [],
       ExchangeRatesOverTime: [],
       TimseSeries: [],
+      AUDExchangeRates: {},
    },
    reducers: {
       addToConvertions: (state, action) => {
@@ -31,6 +32,13 @@ const exchangesSlice = createSlice({
       dropTimeSeries: (state, action) => {
          state.TimseSeries = [];
       },
+      addAUDExchangeRates: (state, action) => {
+         if (state.AUDExchangeRates[action.payload[0]] !== undefined) {
+            state.AUDExchangeRates[action.payload[0]].push(action.payload[1]);
+         } else {
+            state.AUDExchangeRates[action.payload[0]] = [action.payload[1]];
+         }
+      },
    },
 });
 
@@ -41,6 +49,7 @@ export const {
    dropExchangeRatesOverTime,
    addTimeSeries,
    dropTimeSeries,
+   addAUDExchangeRates,
 } = exchangesSlice.actions;
 
 export default exchangesSlice.reducer;

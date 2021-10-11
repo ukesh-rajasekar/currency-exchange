@@ -4,24 +4,34 @@ import { TimeSeries } from '../components/charts/polling';
 import {
    dropExchangeRatesOverTime,
    dropTimeSeries,
+   addTimeSeries,
 } from '../app/exchangesSlice';
 import { useDispatch } from 'react-redux';
+import LineCharts from '../components/charts/LineCharts';
 
 import { Paper, Box, Grid, Button } from '@mui/material';
+
+const getDate = () => {
+   var d = new Date();
+   return d.toLocaleString();
+};
 
 export default function Charts() {
    const [fromCurrency, setFromCurrency] = React.useState('AUD');
    const [toCurrency, setToCurrency] = React.useState('AUD');
 
-   const [pollingInterval, setPollingInterval] = React.useState(false);
-   const dispatch = useDispatch();
+   const [pollingInterval, setPollingInterval] = React.useState(5000);
+   // const dispatch = useDispatch();
 
-   const GenerateChart = () => {
-      dispatch(dropExchangeRatesOverTime());
-      dispatch(dropTimeSeries());
+   // const GenerateChart = () => {
+   //    // dispatch(dropExchangeRatesOverTime());
+   //    // dispatch(dropTimeSeries());
 
-      setPollingInterval(Number(3000));
-   };
+   //    setPollingInterval(Number(3000));
+   // };
+   // dispatch(addTimeSeries(getDate()));
+
+   console.log(toCurrency);
 
    return (
       <Box
@@ -30,6 +40,7 @@ export default function Charts() {
             alignItems: 'center',
             justifyContent: 'space-between',
          }}
+         p={1}
       >
          <Paper>
             <Grid
@@ -57,20 +68,20 @@ export default function Charts() {
                <Grid item xs={6} md={4}>
                   <Button
                      variant='contained'
-                     onClick={(change) => GenerateChart()}
+                     // onClick={(change) => GenerateChart()}
                   >
                      Generate chart
                   </Button>
                </Grid>
             </Grid>
-            {pollingInterval && (
-               <TimeSeries
-                  name={`latest/currencies/${fromCurrency.toLowerCase()}/${toCurrency.toLowerCase()}.json`}
-                  pollingInterval={pollingInterval}
-                  toCurrency={toCurrency.toLowerCase()}
-                  fromCurrency={fromCurrency.toLowerCase()}
-               />
-            )}
+
+            <TimeSeries
+               name={`latest/currencies/${fromCurrency.toLowerCase()}.json`}
+               pollingInterval={pollingInterval}
+               toCurrency={toCurrency.toLowerCase()}
+               fromCurrency={fromCurrency.toLowerCase()}
+            />
+            <LineCharts toCurrency={toCurrency.toLocaleLowerCase()} />
          </Paper>
       </Box>
    );
