@@ -25,7 +25,13 @@ body {
 
 @media screen and (max-width: 900px) {
    .chart-wrapper {
-      width: 340px;
+      width: 522px;
+   }
+}
+
+@media screen and (max-width: 580px) {
+   .chart-wrapper {
+      width: 450px;
    }
 }
 
@@ -43,5 +49,14 @@ body {
    }
    #root {
       flex-grow: 1;
+   }
+   .chart-wrapper {
+      width: 400px;
+   }
+}
+
+@media screen and (max-width: 360px) {
+   .chart-wrapper {
+      width: 350px;
    }
 }
