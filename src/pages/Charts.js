@@ -5,10 +5,10 @@ import LineCharts from '../components/charts/LineCharts';
 import { Paper, Box, Grid, Typography } from '@mui/material';
 import ChunckCalls from '../components/charts/ChunckCalls';
 
-const getDate = () => {
-   var d = new Date();
-   return d.toLocaleString();
-};
+// const getDate = () => {
+//    var d = new Date();
+//    return d.toLocaleString();
+// };
 
 export default function Charts() {
    const [fromCurrency, setFromCurrency] = React.useState('AUD');
@@ -23,7 +23,8 @@ export default function Charts() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            overflowX: 'scroll',
+            flexWrap: 'wrap',
+            overflow: 'hidden',
          }}
          p={1}
       >
@@ -31,12 +32,12 @@ export default function Charts() {
             <Grid
                container
                spacing={1}
-               sx={{ margin: '3%' }}
+               p={5}
                direction='row'
                justifyContent='center'
                alignItems='center'
             >
-               <Grid item xs={12} md={4}>
+               <Grid item xs={12} md={6}>
                   <DropdownList
                      name='From'
                      value={fromCurrency}
@@ -44,7 +45,7 @@ export default function Charts() {
                      isFiltered={true}
                   />
                </Grid>
-               <Grid item xs={12} md={4}>
+               <Grid item xs={12} md={6}>
                   <DropdownList
                      name='To'
                      value={toCurrency}

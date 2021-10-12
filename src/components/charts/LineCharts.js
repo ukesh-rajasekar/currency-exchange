@@ -3,7 +3,6 @@ import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 
 import { Box } from '@mui/system';
-import { Paper } from '@mui/material';
 
 export default function LineCharts(props) {
    const { toCurrency, fromCurrency } = props;
@@ -37,12 +36,17 @@ export default function LineCharts(props) {
             },
          ],
       },
+
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+         position: 'top',
+      },
    };
+
    return (
-      <Box sx={{ display: 'flex' }}>
-         <Paper>
-            <Line data={plotData} options={options} />
-         </Paper>
+      <Box className='chart-wrapper'>
+         <Line data={plotData} options={options} />
       </Box>
    );
 }

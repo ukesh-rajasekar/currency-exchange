@@ -11,7 +11,6 @@ export default function Conversion() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            overflowX: 'scroll',
          }}
       >
          <Paper elevation={12} className='conversion-wrapper'>

@@ -7,7 +7,7 @@ import Tabs from './components/Shared/Tabs';
 function App() {
    return (
       <div className='app'>
-         <Container fixed>
+         <Container fixed className='app-wrapper'>
             <Tabs />
          </Container>
       </div>

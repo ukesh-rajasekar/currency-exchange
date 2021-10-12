@@ -45,6 +45,7 @@ export const darkTheme = createTheme({
             // Name of the slot
             root: {
                // Some CSS
+               // width: '100%',
                flexGrow: '1',
             },
          },

@@ -125,66 +125,83 @@ export default function ExchangeRateTable(props) {
 
    return (
       <TableContainer component={Paper}>
-         <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+         <Table
+            className='table-wrapper'
+            sx={{ tableLayout: 'fixed' }}
+            aria-label='customized table'
+         >
             <TableHead>
                <TableRow>
-                  <StyledTableCell>Currency Code</StyledTableCell>
-                  <StyledTableCell align='right'>Symbol</StyledTableCell>
-                  <StyledTableCell align='right'>
+                  <StyledTableCell className='table-cell'>
+                     Currency Code
+                  </StyledTableCell>
+                  <StyledTableCell className='table-cell' align='right'>
+                     Symbol
+                  </StyledTableCell>
+                  <StyledTableCell className='table-cell' align='right'>
                      Latest Exchange Rate
                   </StyledTableCell>
-                  <StyledTableCell align='right'>
+                  <StyledTableCell className='table-cell' align='right'>
                      Yesterdays Exchange Rate
                   </StyledTableCell>
-                  <StyledTableCell align='right'>% Change</StyledTableCell>
+                  <StyledTableCell className='table-cell' align='right'>
+                     % Change
+                  </StyledTableCell>
                </TableRow>
             </TableHead>
             <TableBody>
                {tableRowData.map((row) => (
                   <StyledTableRow key={row.code}>
-                     <StyledTableCell component='th' scope='row'>
+                     <StyledTableCell
+                        className='table-cell'
+                        component='th'
+                        scope='row'
+                     >
                         {row.code}
                      </StyledTableCell>
-                     <StyledTableCell align='right'>
+                     <StyledTableCell className='table-cell' align='right'>
                         {row.symbol}
                      </StyledTableCell>
-                     <StyledTableCell align='right'>
-                        {row.latest}
+                     <StyledTableCell className='table-cell' align='right'>
+                        {row.latest.toFixed(3)}
                      </StyledTableCell>
-                     <StyledTableCell align='right'>
-                        {row.yesterday}
+                     <StyledTableCell className='table-cell' align='right'>
+                        {row.yesterday.toFixed(3)}
                      </StyledTableCell>
-                     <StyledTableCell align='right'>
-                        {' '}
-                        {getPercentageChange(row.latest, row.yesterday) > 0 && (
-                           <Typography variant='h7' color='primary'>
-                              Percentage increase +
-                              {(
-                                 ((row.latest - row.yesterday) /
-                                    row.yesterday) *
-                                 100
-                              ).toFixed(3)}
-                              %
-                           </Typography>
-                        )}
-                        {getPercentageChange(row.latest, row.yesterday) < 0 && (
-                           <Typography variant='h7' color='error'>
-                              Percentage decrease -
-                              {(
-                                 ((row.yesterday - row.latest) /
-                                    row.yesterday) *
-                                 100
-                              ).toFixed(3)}
-                              %
-                           </Typography>
-                        )}
-                        {getPercentageChange(row.latest, row.yesterday) ==
-                           0 && (
-                           <Typography variant='h7' color='warning'>
-                              No % change{' '}
-                           </Typography>
-                        )}
-                     </StyledTableCell>
+
+                     {getPercentageChange(row.latest, row.yesterday) > 0 && (
+                        <StyledTableCell
+                           className='table-cell'
+                           align='right'
+                           sx={{ color: '#2FE000' }}
+                        >
+                           +
+                           {(
+                              ((row.latest - row.yesterday) / row.yesterday) *
+                              100
+                           ).toFixed(3)}
+                           %
+                        </StyledTableCell>
+                     )}
+                     {getPercentageChange(row.latest, row.yesterday) < 0 && (
+                        <StyledTableCell
+                           className='table-cell'
+                           align='right'
+                           sx={{ color: '#FF3000' }}
+                        >
+                           -
+                           {(
+                              ((row.yesterday - row.latest) / row.yesterday) *
+                              100
+                           ).toFixed(3)}
+                           %
+                        </StyledTableCell>
+                     )}
+                     {getPercentageChange(row.latest, row.yesterday) == 0 && (
+                        <StyledTableCell className='table-cell' align='right'>
+                           No % change{' '}
+                        </StyledTableCell>
+                     )}
                   </StyledTableRow>
                ))}
             </TableBody>
