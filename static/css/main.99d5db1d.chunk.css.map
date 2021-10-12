@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAAA,KACG,WAAY,CACZ,wBACH,CAEA,oCACG,GACG,wBACH,CACH","file":"main.99d5db1d.chunk.css","sourcesContent":["html {\r\n   height: 100%;\r\n   background-color: whitesmoke;\r\n}\r\n\r\n@media screen and (max-width: 470px) {\r\n   h3 {\r\n      font-size: 25px !important;\r\n   }\r\n}\r\n"]}
