@@ -51,7 +51,7 @@ const getResults = (data) => {
 const getYesterdaysDate = () => {
    var dateObj = new Date();
 
-   dateObj.setDate(dateObj.getDate() - 4);
+   dateObj.setDate(dateObj.getDate() - 2);
    var toDate = dateObj.getDate();
    var toMonth = dateObj.getMonth() + 1;
    var toYear = dateObj.getFullYear();

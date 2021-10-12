@@ -33,7 +33,7 @@ export default function Convert() {
          <Grid
             container
             spacing={1}
-            sx={{ margin: '3%' }}
+            p={5}
             direction='row'
             justifyContent='center'
             alignItems='center'
@@ -69,6 +69,7 @@ export default function Convert() {
                   name='From'
                   value={fromCurrency}
                   onChange={(e) => setFromCurrency(e.target.value)}
+                  isFiltered={false}
                />
             </Grid>
             <Grid item xs={7} md={4}>
@@ -76,6 +77,7 @@ export default function Convert() {
                   name='To'
                   value={toCurrency}
                   onChange={(e) => setToCurrency(e.target.value)}
+                  isFiltered={false}
                />
             </Grid>
          </Grid>

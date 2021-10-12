@@ -3,25 +3,23 @@ import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 
 import { Box } from '@mui/system';
+import { Paper } from '@mui/material';
 
 export default function LineCharts(props) {
    const { toCurrency, fromCurrency } = props;
-   // let exchangeRateOverTime = useSelector(
-   //    (state) => state.exchanges.ExchangeRatesOverTime
-   // );
 
    let timeSeries = useSelector((state) => state.exchanges.TimseSeries);
 
-   let exchangeRateOverTime2 = useSelector(
+   let exchangeRateOverTime = useSelector(
       (state) => state.exchanges.AUDExchangeRates
    );
-   console.log(exchangeRateOverTime2[fromCurrency][toCurrency]);
+
    const plotData = {
       labels: timeSeries,
       datasets: [
          {
             label: 'Change in exchange rate',
-            data: exchangeRateOverTime2[fromCurrency][toCurrency],
+            data: exchangeRateOverTime[fromCurrency][toCurrency],
             fill: false,
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -42,7 +40,9 @@ export default function LineCharts(props) {
    };
    return (
       <Box sx={{ display: 'flex' }}>
-         <Line data={plotData} options={options} />
+         <Paper>
+            <Line data={plotData} options={options} />
+         </Paper>
       </Box>
    );
 }

@@ -43,6 +43,7 @@ export default function ConversionHistoryCard() {
                         variant='h6'
                         component='div'
                         textAlign='center'
+                        className='conversion-history-record'
                      >
                         {exchange['amount']} {exchange['from']} to{' '}
                         {exchange['convertionAmount']} {exchange['to']}

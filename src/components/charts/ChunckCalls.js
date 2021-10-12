@@ -1,11 +1,7 @@
 import React from 'react';
 import { useGetExchangeRatesByCurrencyQuery } from '../../services/currencyAPIs';
 import { currencySymbols } from '../Shared/CurrencySymbols';
-import {
-   addExchangeRatesOverTime,
-   addTimeSeries,
-   addAUDExchangeRates,
-} from '../../app/exchangesSlice';
+import { addTimeSeries, addAUDExchangeRates } from '../../app/exchangesSlice';
 import { useDispatch } from 'react-redux';
 
 const getResults = (data) => {
@@ -22,6 +18,7 @@ export default function ChunckCalls(props) {
    const dispatch = useDispatch();
 
    //polling only 5 countries ....
+
    const audRates = useGetExchangeRatesByCurrencyQuery(
       `latest/currencies/aud.json`,
       {
@@ -75,12 +72,12 @@ export default function ChunckCalls(props) {
    const data = [audData, inrData, usdData, eurData, crcData];
    const countries = ['aud', 'inr', 'usd', 'eur', 'crc'];
 
+   //storing data in redux
    const storeExchangeRates = async () => {
       for (var i = 0; i < data.length; i++) {
-         console.log([countries[i]]);
+         //  console.log([countries[i]]);
          if (data[i] !== undefined) {
             Object.keys(data[i][countries[i]]).map((currency) => {
-               //  console.log(data[i][countries[i]][currency]);
                if (currencySymbols[currency.toUpperCase()] != undefined) {
                   dispatch(
                      addAUDExchangeRates([
@@ -110,13 +107,13 @@ export default function ChunckCalls(props) {
 
    if (
       !audData?.[countries[0]] ||
-      !usdData?.[countries[1]] ||
-      !inrData?.[countries[2]] ||
-      !crcData?.[countries[3]] ||
-      !eurData?.[countries[4]]
+      !inrData?.[countries[1]] ||
+      !usdData?.[countries[2]] ||
+      !eurData?.[countries[3]] ||
+      !crcData?.[countries[4]]
    ) {
       return null;
    }
 
-   return <div>polling...</div>;
+   return <div></div>;
 }

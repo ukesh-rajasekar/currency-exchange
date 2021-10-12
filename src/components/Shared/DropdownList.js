@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import { currencySymbols } from './CurrencySymbols';
+import { currencyToPoll } from './CurrencyToPoll';
+
 import { useGetExchangeRatesByCurrencyQuery } from '../../services/currencyAPIs';
 
 import Select from '@mui/material/Select';
@@ -8,21 +10,27 @@ import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 
 export default function DropdownList2(props) {
-   const { name, value, onChange } = props;
+   const { name, value, onChange, isFiltered } = props;
    const [currencies, setCurrencies] = React.useState(null);
+   const [symbol, setSymbol] = React.useState(false);
 
    const { data, error, isLoading } = useGetExchangeRatesByCurrencyQuery(
       'latest/currencies.json'
    );
 
    const getFilteredCurrency = (currencyCode) => {
-      if (currencySymbols[currencyCode.toUpperCase()] != undefined) {
+      if (symbol[currencyCode.toUpperCase()] != undefined) {
          return currencyCode;
       }
    };
 
-   useEffect(() => {
+   React.useEffect(() => {
       setCurrencies(data);
+      if (isFiltered) {
+         setSymbol(currencyToPoll);
+      } else {
+         setSymbol(currencySymbols);
+      }
    }, [data]);
 
    return (
@@ -55,7 +63,7 @@ export default function DropdownList2(props) {
                            key={currency}
                            value={currency.toUpperCase()}
                         >
-                           {currencySymbols[currency.toUpperCase()]}{' '}
+                           {symbol[currency.toUpperCase()]}{' '}
                            {currency.toUpperCase()} - {currencies[currency]}
                         </MenuItem>
                      );

@@ -32,14 +32,14 @@ export default function Calculate(props) {
    };
 
    const convert = () => {
-      save((Number(amount) * data[toCurrency.toLowerCase()]).toFixed(7));
+      save((Number(amount) * data[toCurrency.toLowerCase()]).toFixed(4));
    };
 
    return (
       <Grid
          container
          spacing={1}
-         sx={{ margin: '3%' }}
+         p={3}
          direction='row'
          justifyContent='center'
          alignItems='center'
@@ -57,7 +57,7 @@ export default function Calculate(props) {
 
          <Grid
             item
-            xs={6}
+            xs={12}
             md={8}
             sx={{ alignSelf: 'center', textAlign: 'center' }}
          >
