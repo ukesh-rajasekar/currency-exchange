@@ -1,3 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-loop-func */
+/* eslint-disable array-callback-return */
+/* eslint-disable eqeqeq */
 import React from 'react';
 import { useGetExchangeRatesByCurrencyQuery } from '../../services/currencyAPIs';
 import { currencySymbols } from '../Shared/CurrencySymbols';
@@ -13,7 +17,7 @@ const getDate = () => {
    return d.toLocaleString();
 };
 
-export default function ChunckCalls(props) {
+export default function ChunckCalls (props) {
    const { fromCurrency, toCurrency, pollingInterval } = props;
    const dispatch = useDispatch();
 

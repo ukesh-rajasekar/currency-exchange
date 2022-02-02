@@ -6,12 +6,12 @@ import Conversion from '../../pages/Conversion';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { AppBar, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 
-export default function CenteredTabs() {
+export default function CenteredTabs () {
    const [value, setValue] = React.useState(0);
 
-   const handleChange = (event, newValue) => {
+   const handleChange = (_event, newValue) => {
       setValue(newValue);
    };
 

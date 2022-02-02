@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 
-export default function DropdownList2(props) {
+export default function DropdownList2 (props) {
    const { name, value, onChange, isFiltered } = props;
    const [currencies, setCurrencies] = React.useState(null);
    const [symbol, setSymbol] = React.useState(false);
@@ -18,8 +18,12 @@ export default function DropdownList2(props) {
       'latest/currencies.json'
    );
 
+   //fetch status
+   console.log(error, isLoading);
+
+   //filtering only few currency from a list of currencies
    const getFilteredCurrency = (currencyCode) => {
-      if (symbol[currencyCode.toUpperCase()] != undefined) {
+      if (symbol[currencyCode.toUpperCase()] !== undefined) {
          return currencyCode;
       }
    };
@@ -31,7 +35,7 @@ export default function DropdownList2(props) {
       } else {
          setSymbol(currencySymbols);
       }
-   }, [data]);
+   }, [data, isFiltered]);
 
    return (
       <Box

@@ -5,12 +5,9 @@ import LineCharts from '../components/charts/LineCharts';
 import { Paper, Box, Grid, Typography } from '@mui/material';
 import ChunckCalls from '../components/charts/ChunckCalls';
 
-// const getDate = () => {
-//    var d = new Date();
-//    return d.toLocaleString();
-// };
 
-export default function Charts() {
+
+export default function Charts () {
    const [fromCurrency, setFromCurrency] = React.useState('AUD');
    const [toCurrency, setToCurrency] = React.useState('USD');
 

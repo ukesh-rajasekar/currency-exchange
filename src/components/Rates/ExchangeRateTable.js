@@ -12,7 +12,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { setTableRowData } from '../../app/exchangesSlice';
-import { Typography } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
    [`&.${tableCellClasses.head}`]: {
@@ -34,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
    },
 }));
 
-function createData(code, symbol, latest, yesterday, change) {
+function createData (code, symbol, latest, yesterday, change) {
    return {
       code,
       symbol,
@@ -61,7 +60,7 @@ const getYesterdaysDate = () => {
    return yesterday;
 };
 
-export default function ExchangeRateTable(props) {
+export default function ExchangeRateTable (props) {
    const { fromCurrency } = props;
 
    var MyDateString = getYesterdaysDate();
@@ -82,9 +81,10 @@ export default function ExchangeRateTable(props) {
       yesterdaysExchangeRate
    );
 
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    const generateTableData = (latest, yesterdays, from) => {
       const rowData = Object.entries(currencySymbols).map(
-         ([currency, symbol], index) => {
+         ([currency, symbol]) => {
             return createData(
                currency,
                symbol,
@@ -115,7 +115,7 @@ export default function ExchangeRateTable(props) {
          return null;
       }
       generateTableData(latestData, yesterdaysData, fromCurrency);
-   }, [latestData, yesterdaysData]);
+   }, [fromCurrency, generateTableData, latestData, yesterdaysData]);
 
    if (yesterdaysError | latestError) {
       return <>Oh! there is an error</>;
